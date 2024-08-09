@@ -21,12 +21,7 @@ const Login = ({ setShowLogin }) => {
   const onLogin = async (event) => {
     event.preventDefault();
     try {
-      let newUrl = url;
-      if (currState === "Login") {
-        newUrl += "api/user/login";
-      } else {
-        newUrl += "api/user/register";
-      }
+      let newUrl = `${url}${currState === "Login" ? "api/user/login" : "api/user/register"}`;
     
       const response = await axios.post(newUrl, data);
       if (response.data.success) {
@@ -38,6 +33,7 @@ const Login = ({ setShowLogin }) => {
       }
     } catch (error) {
       alert("An error occurred while processing your request.");
+      console.error(error);
     }
   };
 
@@ -49,7 +45,7 @@ const Login = ({ setShowLogin }) => {
           <img
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
-            alt=""
+            alt="Close"
           />
         </div>
         <div className="login-popup-input">
@@ -63,7 +59,6 @@ const Login = ({ setShowLogin }) => {
               required
             />
           )}
-
           <input
             name="email"
             onChange={onChangeHandler}

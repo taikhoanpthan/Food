@@ -8,6 +8,7 @@ import moment from "moment";
 const Order = () => {
   const [orders, setOrders] = useState([]);
   const url = "https://food-te0g.onrender.com";
+
   const fetchAllOrders = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -76,7 +77,7 @@ const Order = () => {
 
   useEffect(() => {
     fetchAllOrders();
-  }, []); // Chạy một lần khi component mount
+  }, []);
 
   return (
     <div className="order add">
