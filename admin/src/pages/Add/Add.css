@@ -1,0 +1,81 @@
+.add {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;
+    color: #4a4a4a;
+    font-size: 16px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group-inline {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .form-group p {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .image-label {
+    display: inline-block;
+    cursor: pointer;
+    border: 2px dashed #ccc;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+  }
+  
+  .image-label img {
+    width: 100%;
+    max-width: 150px;
+  }
+  
+  .submit-btn {
+    max-width: 150px;
+    border: none;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    align-self: flex-end;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }
+  

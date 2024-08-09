@@ -1,0 +1,68 @@
+.exploreMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  h1 {
+    color: #262626;
+    font-weight: 500;
+  }
+
+  .explore-menu-text {
+    max-width: 100%; // Đã thay đổi từ 60% thành 100%
+    color: #808080;
+    margin: 30px 0px;
+    font-size: 20px;
+  }
+
+  .explore-menu-list {
+    display: flex;
+    justify-content: space-around; // Thay đổi từ space-between thành space-around
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+    margin: 20px 0px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+
+    .explore-menu-list-item {
+      img {
+        width: 80px; // Thay đổi từ max-width và max-height thành width và height
+        height: 80px;
+        object-fit: contain;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: 0.2s;
+
+        &.active {
+          border: 4px solid tomato;
+          padding: 2px;
+        }
+      }
+
+      p {
+        margin-top: 10px;
+        color: #747474;
+        font-size: 16px; // Thay đổi từ sử dụng max() sang giá trị cố định
+        cursor: pointer;
+      }
+    }
+  }
+
+  hr {
+    margin: 10px 0px;
+    height: 2px;
+    background-color: #e2e2e2;
+    border: none;
+  }
+
+  .explore-menu-list::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 1050px) {
+  .explore-menu-text{
+    font-size: 14px;
+  }
+}
