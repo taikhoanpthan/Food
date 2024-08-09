@@ -7,7 +7,7 @@ import moment from "moment";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
-
+  const url = "https://food-te0g.onrender.com";
   const fetchAllOrders = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -16,14 +16,11 @@ const Order = () => {
         return;
       }
 
-      const response = await axios.get(
-        "https://food-admin-p58h.onrender.com/api/order/list",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${url}/api/order/list`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
       if (response.data.success) {
         setOrders(response.data.data);
@@ -51,7 +48,7 @@ const Order = () => {
       }
 
       const response = await axios.post(
-        "https://food-admin-p58h.onrender.com/api/order/status",
+        `${url}/api/order/status`,
         {
           orderId,
           status: event.target.value,
