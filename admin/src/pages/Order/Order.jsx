@@ -11,7 +11,7 @@ const Order = () => {
   const fetchAllOrders = async () => {
     try {
       const token = localStorage.getItem("token"); // Lấy token từ localStorage hoặc nơi lưu trữ
-      const res = await axios.get(`https://food-te0g.onrender.com/api/order/list`, {
+      const res = await axios.get("https://food-te0g.onrender.com/api/order/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +34,7 @@ const Order = () => {
   const statusHandler = async (event, orderId) => {
     try {
       const token = localStorage.getItem("token"); // Lấy token từ localStorage hoặc nơi lưu trữ
-      const res = await axios.post(`https://food-te0g.onrender.com/api/order/status`, {
+      const res = await axios.post("https://food-te0g.onrender.com/api/order/status", {
         orderId,
         status: event.target.value,
       }, {
