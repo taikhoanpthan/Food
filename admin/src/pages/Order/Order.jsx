@@ -16,11 +16,14 @@ const Order = () => {
         return;
       }
 
-      const response = await axios.get("https://food-te0g.onrender.com/api/order/list", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        "https://food-admin-p58h.onrender.com/api/order/list",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.data.success) {
         setOrders(response.data.data);
@@ -32,7 +35,10 @@ const Order = () => {
       }
     } catch (error) {
       toast.error("An error occurred while fetching orders");
-      console.error("Error fetching orders:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error fetching orders:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
@@ -44,14 +50,18 @@ const Order = () => {
         return;
       }
 
-      const response = await axios.post("https://food-te0g.onrender.com/api/order/status", {
-        orderId,
-        status: event.target.value,
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await axios.post(
+        "https://food-admin-p58h.onrender.com/api/order/status",
+        {
+          orderId,
+          status: event.target.value,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.data.success) {
         await fetchAllOrders();
@@ -60,7 +70,10 @@ const Order = () => {
       }
     } catch (error) {
       toast.error("An error occurred while updating order status");
-      console.error("Error updating order status:", error.response ? error.response.data : error.message);
+      console.error(
+        "Error updating order status:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
