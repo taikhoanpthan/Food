@@ -5,13 +5,13 @@ import axios from "axios";
 import { assets } from "../../assets/assets";
 import moment from "moment"; // Sử dụng thư viện moment để định dạng ngày
 
-const Order = ({ url }) => {
+const Order = () => {
   const [orders, setOrders] = useState([]);
 
   const fetchAllOrders = async () => {
     try {
       const token = localStorage.getItem("token"); // Lấy token từ localStorage hoặc nơi lưu trữ
-      const res = await axios.get(`${url}api/order/list`, {
+      const res = await axios.get(`https://food-te0g.onrender.com/api/order/list`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -34,7 +34,7 @@ const Order = ({ url }) => {
   const statusHandler = async (event, orderId) => {
     try {
       const token = localStorage.getItem("token"); // Lấy token từ localStorage hoặc nơi lưu trữ
-      const res = await axios.post(`${url}api/order/status`, {
+      const res = await axios.post(`https://food-te0g.onrender.com/api/order/status`, {
         orderId,
         status: event.target.value,
       }, {
@@ -56,7 +56,7 @@ const Order = ({ url }) => {
 
   useEffect(() => {
     fetchAllOrders();
-  }, [url]); // Thêm `url` vào dependency array để cập nhật nếu `url` thay đổi
+  }, []); // Không cần thêm dependency array, `url` không còn là một dependency
 
   return (
     <div className="order add">
