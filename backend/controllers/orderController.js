@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 const placeOrder = async (req, res) => {
   try {
-    const frontend_url = process.env.FRONTEND_URL || "http://localhost:5173"; // Sử dụng biến môi trường cho URL frontend
+    const frontend_url = process.env.FRONTEND_URL || "https://food-fe-ozm0.onrender.com"; // Sử dụng biến môi trường cho URL frontend
     const { items, amount, address } = req.body;
     const userId = req.userId; // Lấy userId từ middleware xác thực
 
