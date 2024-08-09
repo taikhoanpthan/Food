@@ -3,38 +3,48 @@ import "./Order.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { assets } from "../../assets/assets";
-import moment from "moment"; // Sử dụng thư viện moment để định dạng ngày
+import moment from "moment";
 
 const Order = () => {
   const [orders, setOrders] = useState([]);
 
   const fetchAllOrders = async () => {
     try {
-      const token = localStorage.getItem("token"); // Lấy token từ localStorage hoặc nơi lưu trữ
-      const res = await axios.get(`https://food-te0g.onrender.com/api/order/list`, {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("Token không tồn tại. Vui lòng đăng nhập lại.");
+        return;
+      }
+
+      const response = await axios.get("https://food-te0g.onrender.com/api/order/list", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
 
-      if (res.data.success) {
-        setOrders(res.data.data);
-        if (res.data.data.length === 0) {
+      if (response.data.success) {
+        setOrders(response.data.data);
+        if (response.data.data.length === 0) {
           toast.info("No orders found.");
         }
       } else {
-        toast.error("Error fetching orders");
+        toast.error("Error fetching orders: " + response.data.message);
       }
     } catch (error) {
       toast.error("An error occurred while fetching orders");
-      console.error("Error fetching orders:", error);
+      console.error("Error fetching orders:", error.response ? error.response.data : error.message);
     }
   };
 
   const statusHandler = async (event, orderId) => {
     try {
-      const token = localStorage.getItem("token"); // Lấy token từ localStorage hoặc nơi lưu trữ
-      const res = await axios.post(`https://food-te0g.onrender.com/api/order/status`, {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        toast.error("Token không tồn tại. Vui lòng đăng nhập lại.");
+        return;
+      }
+
+      const response = await axios.post("https://food-te0g.onrender.com/api/order/status", {
         orderId,
         status: event.target.value,
       }, {
@@ -43,20 +53,20 @@ const Order = () => {
         },
       });
 
-      if (res.data.success) {
+      if (response.data.success) {
         await fetchAllOrders();
       } else {
-        toast.error("Error updating order status");
+        toast.error("Error updating order status: " + response.data.message);
       }
     } catch (error) {
       toast.error("An error occurred while updating order status");
-      console.error("Error updating order status:", error);
+      console.error("Error updating order status:", error.response ? error.response.data : error.message);
     }
   };
 
   useEffect(() => {
     fetchAllOrders();
-  }, []); // Không cần thêm dependency array, `url` không còn là một dependency
+  }, []); // Chạy một lần khi component mount
 
   return (
     <div className="order add">
