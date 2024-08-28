@@ -60,7 +60,7 @@ const Footer = () => {
         </button>
       )}
       <p className="footer-copyright">
-        Copyright 2024 © tiemtraningnoon.vn - ALL right Reserved.
+        Copyright 2024 © myphan2003.cv@gmail.com - ALL right Reserved.
       </p>
     </footer>
   );
